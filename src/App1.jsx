@@ -4,32 +4,32 @@ import TableRow from "./components/TableRow";
 
 const productList = [
   {
-    id: 1,
-    name: "Keyboard",
+    id: "1",
+    productName: "Keyboard",
     stock: 8,
     price: 2500,
   },
   {
-    id: 2,
-    name: "Mouse",
+    id: "2",
+    productName: "Mouse",
     stock: 12,
     price: 1250,
   },
   {
-    id: 3,
-    name: "Monitor",
+    id: "3",
+    productName: "Monitor",
     stock: 6,
     price: 12000,
   },
   {
-    id: 4,
-    name: "Gaming Keyboard",
+    id: "4",
+    productName: "Gaming Keyboard",
     stock: 12,
     price: 2450,
   },
   {
-    id: 5,
-    name: "Gaming Chair",
+    id: "5",
+    productName: "Gaming Chair",
     stock: 3,
     price: 9500,
   },
@@ -68,42 +68,35 @@ function App() {
     setProducts(newProducts);
   };
 
-  const deleteItem = (id) => {
-    const newProducts = products.filter((product) => product.id !== id);
-    setProducts(newProducts);
-  };
-
   const total = products.reduce((acc, curr) => acc + curr.total, 0);
 
   return (
-    <div>
+    <div className="App">
+      {/* products input area */}
       <h2>Product List</h2>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Stock</th>
-              <th>Price</th>
-              <th>Quantaty</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <TableRow
-                key={product.id}
-                {...product}
-                increment={incrementQuantity}
-                decrement={decrementQuantity}
-                deleteItem={deleteItem}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>quantaty</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <TableRow
+              key={product.id}
+              {...product}
+              decrement={decrementQuantity}
+              increment={incrementQuantity}
+            />
+          ))}
+        </tbody>
+      </table>
       {total > 0 && (
         <div>
           <strong>Total: {total} BDT</strong>
